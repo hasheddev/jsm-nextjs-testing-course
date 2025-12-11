@@ -1,0 +1,32 @@
+Jest, Vitest, and Mocha aren’t just for unit testing. They’re test runners, which means their job is to find your tests, run them, and
+show results. That’s it.
+They don’t care what kind of tests you’re writing, like functions, APIs, databases, or full systems. As long as it’s JavaScript and follows
+the right structure, they’re all good.
+Think of them as a universal “test engine.” Whether you’re testing a small function or a full API, they’ll happily run it.
+So whether you’re testing a small utility or a full system interaction, your test runner stays the same, it’s just the scope of your
+tests that changes.
+
+Unit Tests
+This is where these tools are most famous. You write small, fast tests that check if individual pieces of logic work as expected,
+a function, a module, a class.
+Example: Testing if calculateTotal() returns the right value. Quick, isolated, and no real dependencies.
+Jest, Vitest, and Mocha are perfect for this because they run fast and are easy to set up.
+
+Integration Tests
+Now, when you move to integration testing, your code starts talking to other parts of your system.
+This could mean your API endpoint calling a database, or your service layer interacting with another module.
+And yes, you can absolutely use Jest, Vitest, or Mocha for these too. The difference is in what you’re testing, not how you’re
+running the test.
+Developers often pair them with tools like Supertest (to test Express APIs) or Testcontainers (to spin up real databases) as we discussed in the previous lesson.
+The test runner stays the same, you just expand your test scope to include more connected components instead of isolated units.
+
+End-to-End (E2E) Tests
+Here’s where most of the confusion comes in.
+Could you technically write E2E tests in Jest or Mocha? Technically, yes. But it’s kind of like using a screwdriver to hammer nails.
+It works, but it’s not what it’s built for.
+As you learned, E2E testing needs browser automation, simulating clicks, filling forms, navigating between pages, waiting for dynamic
+content, etc. Jest or Mocha don’t handle that directly.
+You’d have to add tools like Puppeteer or Playwright to make them do it, and at that point, you’re reinventing the wheel.
+That’s why modern E2E frameworks like Playwright and Cypress come with everything built in… their own test runners, browser controllers,
+screenshots, videos, waiting strategies. Everything.
+They’re designed from the ground up to handle full user workflows and not just code execution.

@@ -1,0 +1,135 @@
+1. Scope: Unit, component, integration and end to end
+2. Knowledge:
+Black box: from user's perspective
+White box: Internal logic testing
+Gray box testing: Balanced approach of white and balck box testing
+
+3. Purpose:
+Functional testing: Does it work
+Non functional testing: Does it work well
+
+4: Testing by Execution: Manual, Automated
+
+All four connect to from a complete testing strategy
+
+SCOPE: decides focus of testing, Means how much of the system is being tested at once
+
+Unit testing: examine smallest testable part of application in complete isolation, precise and fast but limited by isolation due to mocking
+It excels at caching logic errors. It is great for testing business logic, algorithm and data transformation and predictable outputs.
+Not great for user interface testing, network communications and complex workflows that span across multiple systems.
+
+Component testing: (self contained piece of a ui that combines logic, presentation and behaviour) they exist in a context recieive props, manage states, respond to ui interactions and render visual elements.
+Testing is done simulating user nteraction and verifying it behaves correctly within the context. Tests user perspection and is relatively isolated.
+
+Integration testing: testing two or more locked components/systems/services. It is complex to manage dues to system quirks.
+
+End to end testing: Most complex, expensive and costly, uses live external sevice and tests app as user experiences the app. Involves real browser automation, network requests, database operations and external service calls.
+Breaks if any system fails. expensive to maintain and change may break multiple tests. It focoses on user perspective. Focus is on workflows that when broken affects businesss, users and entire app the most
+
+KNOWLEDGE
+Deals with how much you know abount internal working sof the systems affects what type of bugs can be caught and how tests are written
+
+Black box testing: A customer perspective testing if it does what is should focus is entirely on input and output(external perspective) internal working is of no concern.
+Stable and do not depend on impelentation details work well for lonterm maintenance and forces devs to think from user perspective. Can discover confusing error messages, unexpected behaviour and missing features that users might encounter.
+Limited for edge cases, and error handling/state cannot be tested
+
+White Box testing: Full knowledge of internal structure, logic and implementation of code. Code paths, algorithms and internal logic can be tested and edge cases. Excels at thorought code testing. Great for testing algoritm, data structure and complex business logic.
+Might become tightly coupled with implementation and break on refactoring and create maintenace overhead. It is great for stable complex internal logic unlikely to change frequently like maths calculations, data processing algorithms, security functions and
+core business logic with well designed requirements.
+
+Gray box testing: Mix of black and white, test with some knowledge of internal working but primarily from external perspective. Allows for more targeted testing for riskiest areas, use realistic test data and cover edge code paths. And test is relatively stable. Works 
+well for integration testing that needs understanding but is concerned with code working.
+
+PURPOSE (why we test)
+
+Functional Testing: Verifies software performs according to requirements(against user requirements)
+- smoke testing: quick high level test making sure basic fucntionalities(most critical) are operational, first after deploying code, tests if system is broken if it fails no other test is needed.
+- sanity testing: tests if small changes does not affect the functioning of affected area catches regressions quickly(type of software bug where a feature that previously worked correctly stops functioning as expected after changes are introduced to the software).
+- regression testing: tests if existing fucntionality does not break due to new features, time consuming.
+- user acceptance test: actaul users verify system meets needs and expectations, reveals confusing workflows, missing features, perfromance problems and integration issues.
+
+Non functional: tests if apps work quisckly securely and reliably.
+- Performance testing: 
+  - load testing: simulates normal usage pattern that verifies normal laod handling.
+  - stress testing: finds system breaking point dues to overload by gradually increasing load till system fails. Helps leanr behaviour in extreme situations and plan for traffic spikes.
+  - volume testing: Focuseson large data in app. Vita for apps that grow overtime.
+- Security tesing: auth systems testing, input validation, encryption and basic security testing.
+- Usability testing: checks how easy and pleasant app is to uses, tests navigation and info architecture, evaluating form design, error handling, accessiblity and testing various devices with app.
+- Compatibility testing: ensures app works well across various environments
+
+EXECUTION how and when tests run
+
+Manual: poking around app(exploratory testing encourages creativity) usability testing fits here. Notices where people hesitate, what consuses tham and how they completely ignore.
+It takes time, does not scale well and misses things.
+
+Automated testing: Hand tests to software tools, fast, consistent and scales and works great with regression testing and is consistent. Frameworks and tolls are used.
+Tools like jest, mocha and junit are used for usint testing.
+For browser level test playwright, selenium and cypress are used.
+For ci/cd: jenkins github actions.
+Needs supervison and does not notice ux issues
+
+TESTING STRATEGIES
+Why they exist: Due to under test (mising critical bugs) or overtest (slow brittle tests) due to ad hoc testing together more complex software and bigger team without what to test, how much to test and when
+to test. Strategies are patterns from proven approaches for common challenges. Help team with resource allocation, avoid common pitfalls and build test suites to improve development speed.
+
+- Testing Pyramid
+Mike Corn(succeding with agile): addressed economic reality(different types of test have vastly different costs and benefits)
+Base = unit tests should be plenty, mid = Integration test some should be present and lastly acceptance test (end to end) should be few.
+It reflects the mathematical relationship between speed cost and confidence. effective for apps with heavy business logic like finance, science and complex unit tests. It is also great for practicing TDD
+Due to relatively simple business logic of modern apps and complex user interface, state management, complex user interactions and many external sevices, pyramid testing does not work well here as it assumes
+unit testing provides meaningful confidence which is not always true with smaller integration testing missing bugs.
+
+Ice cream Cone Anti-Pattern: Following commonbest practices but inverting the testing pyramic with lots of e2e test and barely any unit test. This leads to slow test. This happens because e2e seems more value.
+But it ignores the real world cost of running the test it is the opposite of economical. Feedback becomes slow leading to pushing untested code and code breaks, debugging becomes a nightmare as break point is difficult to identify
+and maintenace gets out of hand wasting hours but create false confidence
+
+- The Testing Trophy
+Proposed by CanSeeDots. Looks similar to a pyramid but propertion cahnged to match how modern web apps work. Base is static tlls like typescript and eslint, next is unit testing smaller than before, middle and largest in integration.
+test with top being end to end tests
+Today's app involves more service integration and less complex algorithms,bugs occurs at the integration boundeiws and api data transfer. Integration testing are realistic enough and also fast enough.
+The trophy also recognizes static analyses preventing null refrences, type mismatches and broken api connections with no testing.
+This strategy fits best with modern front end heavy apps built with react, vue and angular with simple logic and complex integrations. It is also perfect for ci/cd pipelines. Static analyses and integration testing gives fast feedback.
+Few end to end test critical workflows. It's core is that most bugs happen at integration boundries catching more bugs with fewer, faster and more meaningful tests.
+Adapt it to app, team and goals. Use when it helps, tweak when it doesn't and combine when it makes sense.
+
+- The HoneyComb Strategy
+Different parts of the app needs a different testing strategy. It recognises that modern apps are a collection of services not monolithes therefore each service can have it's own strategy absed on it's role and complexity.
+A simple crud service relies mostly on integration tests, complex calculation service on unit tests and a payment service needs unit, integration and end-to-end tests. Test where it matters most for each component. thinks of each service
+as a component in a honeycomb with it's own optimal balance. Example for authenticationservice in an app use integration testing for token generation and expiration and unit tests for hashing and validation. Payment service in same app
+needs relaibility so use heavy unit test for calculation logic, solid integration for gateways and e2e for payment flows. For recommendation service in same app which is algoritm heavy focus on unit tests and few integration tests with minimal
+e2e tests. This sacles beautifully in the micro services architecture.
+It is more flexible but lacks co-ordination and service contracts, integration environments and data dependencies need to be properly aligned so systems do not drift apart.
+Consistency is also a challenge due to different expertise and strategies this needs strong obeservability, devops maturity, shared tooling and cross team knowledge sharing with dashboards, testing guides and alerting.
+This strategy is great for micorservices and polyglot environments(multi language) for distributed and complex apps.
+
+- Testing Diamond
+Combines the advantages of the trophy, pyramid and honeycomb. It takes a balanced approach to the three layers and divites efforts more evenly. Still mostly integration tests but susbtantialy more unit and end to end tests resulting in comprehensive
+testing and practical methodologies. Works well for test that has some complex business logic and some complex user interactions. E.g Sass, Ecommerce platforms, Saas dahboards and Content management systems that need solid logic validation, strong integration
+checks and a few full end to end test workflows. Example for a health care management app it could be used as unit tests for medical calculation algorithms, Integration tests for device and system interfaces and end to end test for patient care workflows. Widely
+covering safety, reliability and compliance. Before use access app complexity, Evaluate capabilities as complex tests needs higher setups and maintenace efforts and check resource availability(time, budget and ci/cd pipeline). This strategy pays most off when cost of
+failure is high like in finance, healthcare and enterprise saas apps Works well with medium to large apps.
+
+THE GOAL OF ALL STRATEGIES IS TO BUILD RELAIBLE SOFTWARE EFFICIENTLY AND NOT JUST REPLICATE WHAT THEY STATE. 
+
+CHOOSING THE RIGHT Strategy depends on app, team, development style and risk tolerance.Find right strategy that fits your needs best.
+- Consider app architecture where is most complex should have most unit tests. Complex ui and integrations need more integration tests and for critical workfloes use E2E tests.
+- Use strategy that fits best TDD devs are more comfortable with pyramid tests, teams that move fast and iterate quickly means trophy might suit team better, Ci/cd team needs both unit and integration. Team that release less often need a lot of E2E tests. Match how team build and ship software.
+- Risk and Business Context: unit test matters most for financial and critical apps, For social and content driven apps Ux and integrations matters most. Internal tools can tolerate more risk. If cost will be catastrophic emphasize unit tests.
+Fragile integration endpoints emphasize integration tests. Strenghten E2E for critical workflows.
+- Adapt strategies as application grows. Be flexible. Builds strategy that fits current needs but evolves over time.
+ASK WHAT IS THE BEST STRATEGY FOR US RIGHT NOW FOR EFFECTIVE TEST PRACTICE
+
+Building and Evolving Test Strategy
+Define, refine and adapt by:
+Accessing current state: current tests, time taken to run, failure frequency, bugs caught and missed.
+Identify constraints: Time to test realistically, deployment frequency, bug tolerance and team testing experience level
+Define goals: know success and target like catch regression before production. improve code quality, enable safe refactoring or support ci/cd pipelines.
+Start small and iterate: Pick areas that matters most. Testing maturaty grown by this.
+Measure and adjust impact: Are we catching bugs before user is feedback loop fast enough, do we have confidence to deploy anytime if not adjust and evolve.
+
+SUMMARY
+Focus where failures hurt mostInvest where tests give return on investment. Always make testing serve you and not slow you down.
+
+Check commits at point of interets / press . | change.com to .dev github.dev/
+Use docker for repeatable, reliable and isolated test. Ensures every test runs in the same isolated environment. Lets us spin up and tear down environments, making
+testing faster, more consistent and easier to automate for fewer environment related bugs and more relaible results.
