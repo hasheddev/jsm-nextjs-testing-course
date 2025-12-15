@@ -130,6 +130,6 @@ Measure and adjust impact: Are we catching bugs before user is feedback loop fas
 SUMMARY
 Focus where failures hurt mostInvest where tests give return on investment. Always make testing serve you and not slow you down.
 
-Check commits at point of interets / press . | change.com to .dev github.dev/
+Check commits at point of interests / press . | change.com to .dev github.dev/
 Use docker for repeatable, reliable and isolated test. Ensures every test runs in the same isolated environment. Lets us spin up and tear down environments, making
-testing faster, more consistent and easier to automate for fewer environment related bugs and more relaible results.
+testing faster, more consistent and easier to automate for fewer environment related bugs and more reliable results.

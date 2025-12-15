@@ -1,1 +1,13 @@
 git submodule add [https://github.com/user/Lesson-Project.git](https://github.com/user/Lesson-Project.git) src/lesson-project
+
+Testing Frontend
+npm install -D jest jest-environment-jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom ts-node @types/jest
+
+Jest is the main test runner package.
+jest-environment/js-dom gives us browser-like APIs for testing components.
+testing-library/react is used to render React components in the tests and interact with them like a user.
+testing-library/dom is built on top of this previous library, and it provides some low-level DOM utilities under the hood.
+The testing-library/jest-dom improves how we can check the results of our tests, and TS Node lets Jest run TypeScript without compiling.
+
+
+Snapshot tests compares rendere output and a single change makes it fail it is great for stable markups. It is not a gppd test of functionality or user experience test.
