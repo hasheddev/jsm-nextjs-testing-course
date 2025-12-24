@@ -1,0 +1,2 @@
+Most common testing strategy beside the tested component for arrangement of test files is the colocation 
+For enterprise apps the mirror folder arrangement is used where test folder mirrors code folder

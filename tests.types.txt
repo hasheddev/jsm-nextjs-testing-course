@@ -45,14 +45,14 @@ PURPOSE (why we test)
 Functional Testing: Verifies software performs according to requirements(against user requirements)
 - smoke testing: quick high level test making sure basic fucntionalities(most critical) are operational, first after deploying code, tests if system is broken if it fails no other test is needed.
 - sanity testing: tests if small changes does not affect the functioning of affected area catches regressions quickly(type of software bug where a feature that previously worked correctly stops functioning as expected after changes are introduced to the software).
-- regression testing: tests if existing fucntionality does not break due to new features, time consuming.
+- regression testing: tests if existing functionality does not break due to new features, time consuming.
 - user acceptance test: actaul users verify system meets needs and expectations, reveals confusing workflows, missing features, perfromance problems and integration issues.
 
 Non functional: tests if apps work quisckly securely and reliably.
 - Performance testing: 
   - load testing: simulates normal usage pattern that verifies normal laod handling.
   - stress testing: finds system breaking point dues to overload by gradually increasing load till system fails. Helps leanr behaviour in extreme situations and plan for traffic spikes.
-  - volume testing: Focuseson large data in app. Vita for apps that grow overtime.
+  - volume testing: Focuses on large data in app. Vita for apps that grow overtime.
 - Security tesing: auth systems testing, input validation, encryption and basic security testing.
 - Usability testing: checks how easy and pleasant app is to uses, tests navigation and info architecture, evaluating form design, error handling, accessiblity and testing various devices with app.
 - Compatibility testing: ensures app works well across various environments
