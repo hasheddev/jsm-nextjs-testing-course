@@ -1,6 +1,4 @@
-import React from "react";
-
-const MockEditDeleteAction = ({ type }: { type: string; idemId: string }) => {
+const MockEditDeleteAction = ({ type }: { type: string; itemId: string }) => {
   return (
     <div>
       <button>Edit {type}</button>

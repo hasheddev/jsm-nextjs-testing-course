@@ -1,9 +1,14 @@
+export const ID = "mock-user-123";
+export const NAME = "Test User";
+export const EMAIL = "test@example.com";
+export const IMAGE = "https://example.com/avatar.jpeg";
+
 const mockSession = {
   user: {
-    id: "mock-user-123",
-    name: "Test User",
-    email: "test@example.com",
-    image: "https://example.com/avatar.jpg",
+    id: ID,
+    name: NAME,
+    email: EMAIL,
+    image: IMAGE,
   },
   expires: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
 };
@@ -31,9 +36,8 @@ const mockUseSession: jest.Mock<MockUseSessionReturn, []> = jest.fn(() => ({
 
 const mockGetSession = jest.fn();
 const mockGetServerSession = jest.fn();
-const mockSignInReact = jest.fn();
+const mockeSignInReact = jest.fn();
 const mockSignOutReact = jest.fn();
-
 const mockGitHub = jest.fn();
 const mockGoogle = jest.fn();
 const mockCredentials = jest.fn();
@@ -43,13 +47,13 @@ export {
   mockSignIn,
   mockSignOut,
   mockHandlers,
-  mockGitHub,
-  mockGoogle,
-  mockCredentials,
   mockUseSession,
   mockGetSession,
   mockGetServerSession,
-  mockSignInReact,
+  mockeSignInReact,
   mockSignOutReact,
+  mockCredentials,
+  mockGitHub,
+  mockGoogle,
   mockSession,
 };

@@ -1,20 +1,22 @@
-import { MockedImage } from "@/tests/mocks/image.mock";
+import { MockImage } from "./image.mock";
 
-interface MetricProps {
-  imgUrl: string;
+export const MockMetric = ({
+  imageUrl,
+  alt,
+  value,
+  title,
+  textStyles,
+}: {
+  imageUrl: string;
   alt: string;
-  value: number;
+  value: string;
   title: string;
   textStyles?: string;
-}
-
-const MockMetric = ({ imgUrl, alt, value, title, textStyles }: MetricProps) => {
+}) => {
   return (
-    <div className={textStyles}>
-      <MockedImage alt={alt} src={imgUrl} />
+    <div className={textStyles} data-testid="metric">
+      <MockImage src={imageUrl} alt={alt} />
       {value} {title}
     </div>
   );
 };
-
-export { MockMetric };

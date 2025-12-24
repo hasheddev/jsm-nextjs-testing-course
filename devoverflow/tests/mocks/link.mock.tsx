@@ -1,7 +1,5 @@
-import { ReactNode } from "react";
+import React from "react";
 
-const MockLink = ({ children, href }: { children: ReactNode; href: string }) => {
+export const MockLink = ({ href, children }: { href: string; children?: React.ReactNode }) => {
   return <a href={href}>{children}</a>;
 };
-
-export { MockLink };
