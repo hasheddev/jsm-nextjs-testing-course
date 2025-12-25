@@ -82,7 +82,7 @@ describe("QuestionCard component", () => {
         expect(timestamp).toHaveClass("sm:hidden");
       });
 
-      it("should hide timestamp on smal screens", () => {
+      it("should hide timestamp on small screens", () => {
         Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: 800 });
         window.dispatchEvent(new Event("resize"));
 
